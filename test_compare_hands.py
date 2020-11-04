@@ -80,26 +80,26 @@ class TestCompareHands(unittest.TestCase):
 
     def test_analyze_hand_seven(self):
         self.assertEqual(
-            compare_hands.compare_hands("A267J", "KQJT1"),
-            "A267J vs KQJT1: A267J high card > KQJT1 high card"
+            compare_hands.compare_hands("A267J", "KQJT6"),
+            "A267J vs KQJT6: A267J high card > KQJT6 high card"
         )
 
     def test_analyze_hand_eight(self):
         self.assertEqual(
-            compare_hands.compare_hands("1357*", "A2345"),
-            "1357* vs A2345: 1357* high card < A2345 straight"
+            compare_hands.compare_hands("3579*", "A2345"),
+            "3579* vs A2345: 3579* high card < A2345 straight"
         )
 
     def test_analyze_hand_nine(self):
         self.assertEqual(
-            compare_hands.compare_hands("1357A", "AKQJT"),
-            "1357A vs AKQJT: 1357A high card < AKQJT straight"
+            compare_hands.compare_hands("2357A", "AKQJT"),
+            "2357A vs AKQJT: 2357A high card < AKQJT straight"
         )
 
     def test_analyze_hand_ten(self):
         self.assertEqual(
-            compare_hands.compare_hands("*789T", "*1234"),
-            "*789T vs *1234: *789T straight > *1234 straight"
+            compare_hands.compare_hands("*789T", "*2345"),
+            "*789T vs *2345: *789T straight > *2345 straight"
         )
 
 
