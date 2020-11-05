@@ -129,8 +129,8 @@ def analyze_hand(hand):
 
         # ? Fours
         if count == 4:
-            result["hand_class"] = "four-of-a-kind"
-            result["hand_score"] = HAND_SCORES["four-of-a-kind"]
+            result = set_hand_analysis(
+                result, hand_name="four-of-a-kind")
             result["card_score"] = CARD_SCORES[card]
             result["hand_highest"] = find_card_score(
                 result["hand_highest"],
@@ -139,8 +139,8 @@ def analyze_hand(hand):
             fours = 1
 
         elif count == 3:
-            result["hand_class"] = "three-of-a-kind"
-            result["hand_score"] = HAND_SCORES["three-of-a-kind"]
+            result = set_hand_analysis(
+                result, hand_name="three-of-a-kind")
             result["hand_highest"] = find_card_score(
                 result["hand_highest"],
                 CARD_SCORES[card]
@@ -148,8 +148,8 @@ def analyze_hand(hand):
             threes += 1
 
         elif count == 2:
-            result["hand_class"] = "pair"
-            result["hand_score"] = HAND_SCORES["pair"]
+            result = set_hand_analysis(
+                result, hand_name="pair")
             result["hand_highest"] = find_card_score(
                 result["hand_highest"],
                 CARD_SCORES[card]
@@ -165,11 +165,9 @@ def analyze_hand(hand):
 
     # ? Threes and Pairs
     if threes == 1 and pairs == 1:
-        result["hand_class"] = "full house"
-        result["hand_score"] = HAND_SCORES["full house"]
+        result = set_hand_analysis(result, "full house")
     elif pairs == 2:
-        result["hand_class"] = "two pair"
-        result["hand_score"] = HAND_SCORES["two pair"]
+        result = set_hand_analysis(result, "two pair")
 
     # ? Straights and High Cards
     elif not fours and not threes and not pairs:
@@ -190,11 +188,18 @@ def analyze_hand(hand):
             difference = CARD_SCORES[start] - CARD_SCORES[end]
 
             if difference > 4:
-                result["hand_class"] = "high card"
-                result["hand_score"] = HAND_SCORES["high card"]
+                result = set_hand_analysis(result, "high card")
             else:
-                result["hand_class"] = "straight"
-                result["hand_score"] = HAND_SCORES["straight"]
+                result = set_hand_analysis(result, "straight")
+
+    # ? Threes with wildcard
+    elif threes == 1 and result["wildcard"]:
+        result = set_hand_analysis(result, hand_name="four-of-a-kind")
+
+    # ? Pair with wildcard
+    elif pairs == 1 and result["wildcard"]:
+        result = set_hand_analysis(
+            result, hand_name="three-of-a-kind")
 
     # ! DEBUG
     # print(
@@ -252,6 +257,12 @@ def sort_hand(hand):
 
     return [
         tuple for x in CARD_SCORES.keys() for tuple in hand if tuple[0] == x]
+
+
+def set_hand_analysis(analysis, hand_name=None):
+    analysis["hand_class"] = hand_name
+    analysis["hand_score"] = HAND_SCORES[hand_name]
+    return analysis
 
 
 if __name__ == '__main__':

@@ -102,6 +102,12 @@ class TestCompareHands(unittest.TestCase):
             "*789T vs *2345: *789T straight > *2345 straight"
         )
 
+    def test_analyze_hand_eleven(self):
+        self.assertEqual(
+            compare_hands.compare_hands("AAA*5", "AA*45"),
+            "AAA*5 vs AA*45: AAA*5 four-of-a-kind > AA*45 three-of-a-kind"
+        )
+
 
 if __name__ == '__main__':
     unittest.main()
