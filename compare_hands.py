@@ -4,8 +4,6 @@
     author: Travis Lee Presnell
     name: Poker-hand-winner-decider-app!
     date: 04 November, 2020
-    notes: Swept Full Stack Developer Position - Test 1
-
 """
 
 import sys
