@@ -229,7 +229,10 @@ def valid_hand(hand):
     if not isinstance(hand, str):
         return False
 
-    if len(hand) < 5:
+    if len(hand) < 5 or len(hand) > 5:
+        print(
+            "Error: Hand `{hand}` invalid length!".format(
+                hand=hand))
         return False
 
     for char in hand:

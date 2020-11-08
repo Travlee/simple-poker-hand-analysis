@@ -31,6 +31,10 @@ class TestCompareHands(unittest.TestCase):
             compare_hands.valid_hand(1),
             False
         )
+        self.assertEqual(
+            compare_hands.valid_hand("AAAAKA"),
+            False
+        )
 
     def test_analyze_hand_one(self):
         self.assertEqual(
