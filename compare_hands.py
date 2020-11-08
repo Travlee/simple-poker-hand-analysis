@@ -177,6 +177,8 @@ def analyze_hand(hand):
 
             if sequence[0] == "A" and (
                     sequence[1] == "K" or sequence[1] == "5"):
+                if sequence[1] == "5":
+                    result["hand_highest"] = CARD_SCORES["5"]
                 start = sequence[1]
             else:
                 start = sequence[0]

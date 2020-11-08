@@ -2,6 +2,7 @@
 
 import unittest
 import compare_hands
+from compare_hands import analyze_hand
 
 
 class TestCompareHands(unittest.TestCase):
@@ -106,6 +107,18 @@ class TestCompareHands(unittest.TestCase):
         self.assertEqual(
             compare_hands.compare_hands("AAA*5", "AA*45"),
             "AAA*5 vs AA*45: AAA*5 four-of-a-kind > AA*45 three-of-a-kind"
+        )
+
+    def test_analyze_hand_straight_ace_high(self):
+        self.assertEqual(
+            compare_hands.analyze_hand("A2345"),
+            {
+                "hand_class": "straight",
+                "hand_score": 5,
+                "hand_highest": 5,
+                "card_score": 28,
+                "wildcard": False
+            }
         )
 
 
