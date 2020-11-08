@@ -266,6 +266,14 @@ def set_hand_analysis(analysis, hand_name=None):
 
 if __name__ == '__main__':
     args = sys.argv[1:]
-    hand_one = args[0]
-    hand_two = args[1]
+    error_message = "Missing hand {hand} (5 cards max): ./compare_hands.py \"A2345\" \"23456\""
+    try:
+        hand_one = args[0]
+    except BaseException:
+        sys.exit(error_message.format(hand="one"))
+    try:
+        hand_two = args[1]
+    except BaseException:
+        sys.exit(error_message.format(hand="two"))
+
     main(hand_one, hand_two)
