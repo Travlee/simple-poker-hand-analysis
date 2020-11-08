@@ -48,7 +48,10 @@ def main(hand_one, hand_two):
 
 def compare_hands(hand_one, hand_two):
     if not valid_hand(hand_one) or not valid_hand(hand_two):
-        print("Invalid hands: %s, %s" % (hand_one, hand_two))
+        print(
+            "Invalid hands: {hand_one}, {hand_two}".format(
+                hand_one=hand_one,
+                hand_two=hand_two))
         exit()
 
     hand_one_analysis = analyze_hand(hand_one)
@@ -60,17 +63,10 @@ def compare_hands(hand_one, hand_two):
     )
 
     return(
-        "%s vs %s: %s %s %s %s %s" %
-        (
-            hand_one,
-            hand_two,
-            hand_one,
-            hand_one_analysis["hand_class"],
-            winner_char,
-            hand_two,
-            hand_two_analysis["hand_class"]
-        )
-    )
+        "{hand_one} vs {hand_two}: {hand_one} {hand_one_class} {winner_char} {hand_two} {hand_two_class}".format(
+            hand_one=hand_one, hand_two=hand_two, hand_one_class=hand_one_analysis[
+                "hand_class"], hand_two_class=hand_two_analysis["hand_class"], winner_char=winner_char
+        ))
 
 
 def get_winner(hand_one_analysis, hand_two_analysis):
@@ -202,9 +198,10 @@ def analyze_hand(hand):
             result, hand_name="three-of-a-kind")
 
     # ! DEBUG
-    # print(
-    #     "hand: %s - hand_class: %s, hand_score: %i, hand_highest: %i, card_score: %i"
-    #     % (hand, result["hand_class"], result["hand_score"], result["hand_highest"], result["card_score"]))
+    # print("hand: {hand} - hand_class: {hand_class}, hand_score: {hand_score}, hand_highest: {hand_highest}, card_score: {card_score}".format(
+    #     hand=hand, hand_class=result["hand_class"], hand_score=result[
+    #         "hand_score"], hand_highest=result["hand_highest"], card_score=result["card_score"]
+    # ))
 
     return result
 
