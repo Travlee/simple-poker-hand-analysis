@@ -8,7 +8,7 @@ Write a simple app that can take two 5-card poker hands, classify each hand, and
 - J for jack
 - T for ten
 - 2-9 for the remaining
-- * for a wild card (max of 1 per hand)
+- `*` for a wild card (max of 1 per hand)
 
 ### Hand classifications are as follows (highest to lowest):
 - four-of-a-kind (4 cards of the same value: AAAA5)
