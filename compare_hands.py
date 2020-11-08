@@ -46,10 +46,7 @@ def main(hand_one, hand_two):
 
 def compare_hands(hand_one, hand_two):
     if not valid_hand(hand_one) or not valid_hand(hand_two):
-        print(
-            "Invalid hands: {hand_one}, {hand_two}".format(
-                hand_one=hand_one,
-                hand_two=hand_two))
+        print(f"Invalid hands: {hand_one}, {hand_two}")
         exit()
 
     hand_one_analysis = analyze_hand(hand_one)
@@ -61,10 +58,8 @@ def compare_hands(hand_one, hand_two):
     )
 
     return(
-        "{hand_one} vs {hand_two}: {hand_one} {hand_one_class} {winner_char} {hand_two} {hand_two_class}".format(
-            hand_one=hand_one, hand_two=hand_two, hand_one_class=hand_one_analysis[
-                "hand_class"], hand_two_class=hand_two_analysis["hand_class"], winner_char=winner_char
-        ))
+        f"{hand_one} vs {hand_two}: {hand_one} {hand_one_analysis['hand_class']} {winner_char} {hand_two} {hand_two_analysis['hand_class']}"
+    )
 
 
 def get_winner(hand_one_analysis, hand_two_analysis):
@@ -232,8 +227,7 @@ def valid_hand(hand):
 
     if len(hand) < 5 or len(hand) > 5:
         print(
-            "Error: Hand `{hand}` invalid length!".format(
-                hand=hand))
+            f"Error: Hand `{hand}` invalid length!")
         return False
 
     for char in hand:
